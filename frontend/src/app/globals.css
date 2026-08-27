@@ -1,0 +1,386 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@400;500;700&family=Anybody:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================================
+   CoreView Design System — "Teal Industrial" Theme
+   Sourced from material-you dark teal palette
+   ============================================================ */
+
+@theme {
+  /* --- Core palette --- */
+  --color-cv-bg:                 #0e1514;
+  --color-cv-surface:            #161d1c;
+  --color-cv-panel:              #1a2120;
+  --color-cv-panel-high:         #1A1D21;
+  --color-cv-surface-high:       #242b2a;
+  --color-cv-surface-highest:    #2f3635;
+  --color-cv-surface-bright:     #333b39;
+
+  /* --- Primary (light cyan-teal) --- */
+  --color-cv-primary:            #d4fff8;
+  --color-cv-primary-fixed:      #78f7ea;
+  --color-cv-primary-dim:        #59dacd;
+  --color-cv-on-primary:         #003733;
+
+  /* --- Secondary (sky blue) --- */
+  --color-cv-secondary:          #8ecdff;
+  --color-cv-secondary-dim:      #96d0ff;
+  --color-cv-secondary-container:#005a86;
+
+  /* --- On-surface --- */
+  --color-cv-on-surface:         #dde4e2;
+  --color-cv-on-surface-var:     #bbc9c6;
+  --color-cv-outline:            #3c4947;
+  --color-cv-outline-soft:       rgba(255,255,255,0.06);
+
+  /* --- Status --- */
+  --color-cv-error:              #ffb4ab;
+  --color-cv-error-bg:           rgba(255,180,171,0.08);
+  --color-cv-error-border:       rgba(255,180,171,0.25);
+
+  --color-cv-warning:            #ffab67;
+  --color-cv-warning-bg:         rgba(255,171,103,0.08);
+  --color-cv-warning-border:     rgba(255,171,103,0.25);
+
+  --color-cv-success:            #6feee1;
+  --color-cv-success-bg:         rgba(111,238,225,0.08);
+  --color-cv-success-border:     rgba(111,238,225,0.25);
+
+  /* --- Spacing tokens --- */
+  --spacing-panel:               12px;
+  --spacing-gutter:              16px;
+  --spacing-page:                24px;
+}
+
+/* ============================================================
+   Base Reset
+   ============================================================ */
+:root {
+  /* Keep legacy vars pointing to new palette for backward compat */
+  --background:    #0e1514;
+  --foreground:    #dde4e2;
+  --card-bg:       #1A1D21;
+  --card-border:   #3c4947;
+  --panel-bg:      #1a2120;
+  --accent-blue:   #59dacd;
+  --status-healthy:#6feee1;
+  --status-warning:#ffab67;
+  --status-critical:#ffb4ab;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #0e1514;
+  color: #dde4e2;
+  font-family: 'Space Grotesk', 'Anybody', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ============================================================
+   Atmospheric Background Layers
+   ============================================================ */
+
+/* Dot-grid overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Ambient teal glow (top center) */
+body::after {
+  content: '';
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(89, 218, 205, 0.07) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Typography Scale
+   ============================================================ */
+code, kbd, samp, pre, .font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.font-mono-nums {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   CoreView Card System
+   ============================================================ */
+
+/* Standard panel card */
+.cv-card {
+  background-color: #1A1D21;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255,255,255,0.03);
+}
+
+/* Legacy alias — maps old .scada-card to new cv-card style */
+.scada-card {
+  background-color: #1A1D21;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.scada-card-subtle {
+  background-color: #161d1c;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 1rem;
+}
+
+/* Machine status card variants */
+.cv-card-error {
+  background-color: #1A1D21;
+  border: 1px solid rgba(255, 180, 171, 0.28);
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-card-error::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 180, 171, 0.04);
+  pointer-events: none;
+}
+
+.cv-card-warning {
+  background-color: #1A1D21;
+  border: 1px solid rgba(255, 171, 103, 0.28);
+  border-radius: 1rem;
+}
+
+.cv-card-success {
+  background-color: #1A1D21;
+  border: 1px solid rgba(111, 238, 225, 0.15);
+  border-radius: 1rem;
+}
+
+/* ============================================================
+   Interactive Elements
+   ============================================================ */
+.btn-interactive {
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-interactive:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-interactive:active {
+  transform: translateY(0px) scale(0.97);
+}
+
+/* ============================================================
+   Status LED Indicators
+   ============================================================ */
+.led-healthy  { background-color: #6feee1; }
+.led-warning  { background-color: #ffab67; }
+.led-critical { background-color: #ffb4ab; }
+.led-neutral  { background-color: #8ecdff; }
+
+/* ============================================================
+   Health Progress Bar Colors
+   ============================================================ */
+.health-bar-critical { background-color: #ffb4ab; }
+.health-bar-warning  { background-color: #ffab67; }
+.health-bar-healthy  { background-color: #6feee1; }
+
+/* ============================================================
+   Background Grid (for page content areas)
+   ============================================================ */
+.bg-scada-grid {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ============================================================
+   Scrollbars
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e1514;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3c4947;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #59dacd;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ============================================================
+   Nav & Header
+   ============================================================ */
+.cv-nav {
+  background: rgba(14, 21, 20, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(60, 73, 71, 0.6);
+}
+
+.cv-nav-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #bbc9c6;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.cv-nav-link:hover {
+  color: #dde4e2;
+  background: rgba(47, 54, 53, 0.5);
+}
+
+.cv-nav-link.active {
+  color: #d4fff8;
+  border-bottom: 2px solid #59dacd;
+  border-radius: 0;
+  padding-bottom: 4px;
+}
+
+/* ============================================================
+   KPI / Metric Cards
+   ============================================================ */
+.cv-kpi {
+  background-color: #1A1D21;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 96px;
+}
+
+.cv-kpi-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #bbc9c6;
+}
+
+.cv-kpi-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  color: #dde4e2;
+}
+
+.cv-kpi-value.primary { color: #d4fff8; }
+.cv-kpi-value.error   { color: #ffb4ab; }
+.cv-kpi-value.warning { color: #ffab67; }
+.cv-kpi-value.success { color: #6feee1; }
+
+/* ============================================================
+   Machine Fleet Cards
+   ============================================================ */
+.cv-machine-card {
+  background-color: #1A1D21;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cv-machine-card:hover {
+  background-color: rgba(47, 54, 53, 0.3);
+}
+
+.cv-machine-card.error   { border-color: rgba(255, 180, 171, 0.3); }
+.cv-machine-card.warning { border-color: rgba(255, 171, 103, 0.3); }
+.cv-machine-card.success { border-color: rgba(111, 238, 225, 0.15); }
+.cv-machine-card.selected { border-color: #59dacd; box-shadow: 0 0 0 1px rgba(89, 218, 205, 0.2); }
+
+/* ============================================================
+   Status Chips / Badges
+   ============================================================ */
+.cv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.cv-chip.error   { color: #ffb4ab; background: rgba(255,180,171,0.08); border-color: rgba(255,180,171,0.28); }
+.cv-chip.warning { color: #ffab67; background: rgba(255,171,103,0.08); border-color: rgba(255,171,103,0.28); }
+.cv-chip.success { color: #6feee1; background: rgba(111,238,225,0.08); border-color: rgba(111,238,225,0.2); }
+.cv-chip.neutral { color: #8ecdff; background: rgba(142,205,255,0.08); border-color: rgba(142,205,255,0.2); }
+.cv-chip.dim     { color: #bbc9c6; background: rgba(187,201,198,0.08); border-color: rgba(187,201,198,0.15); }
+
+/* ============================================================
+   AI Feed Log Items
+   ============================================================ */
+.cv-log-item {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  padding: 8px 0;
+}
+
+.cv-log-bar {
+  width: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Pulse animation for critical indicators
+   ============================================================ */
+@keyframes cv-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.cv-pulse { animation: cv-pulse 1.5s ease-in-out infinite; }
