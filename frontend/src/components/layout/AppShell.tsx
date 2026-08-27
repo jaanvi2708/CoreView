@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -12,7 +12,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { overview, alerts, isConnected } = useTelemetry();
   const { isAuthenticated } = useRole();
-  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const isLoginPage = pathname === "/login";
 
@@ -45,13 +44,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         alerts={alerts}
       />
 
-      {/* Main Body: Left Thin Control Panel + Center Content */}
+      {/* Main Body: Dedicated Left Control Panel + Main Dashboard Area */}
       <div className="flex flex-1 overflow-hidden">
-        <Sidebar
-          alerts={alerts}
-          isCollapsed={isCollapsed}
-          onToggle={() => setIsCollapsed(!isCollapsed)}
-        />
+        <Sidebar />
         <main className="flex-1 overflow-y-auto bg-scada-grid p-4 lg:p-6 pb-16" style={{ background: '#0e1514' }}>
           {children}
         </main>
