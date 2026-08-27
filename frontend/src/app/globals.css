@@ -1,71 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@400;500;700&family=Anybody:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 /* ============================================================
-   CoreView Design System — "Teal Industrial" Theme
-   Sourced from material-you dark teal palette
+   CoreView — "Industrial Precision" Theme (Stitch MCP Design System)
+   Engineered for mission-critical SCADA & 3D Digital Twin Command
    ============================================================ */
 
 @theme {
-  /* --- Core palette --- */
+  /* --- Core Palette (Stitch Material-You Dark Industrial) --- */
   --color-cv-bg:                 #0e1514;
-  --color-cv-surface:            #161d1c;
-  --color-cv-panel:              #1a2120;
-  --color-cv-panel-high:         #1A1D21;
-  --color-cv-surface-high:       #242b2a;
-  --color-cv-surface-highest:    #2f3635;
-  --color-cv-surface-bright:     #333b39;
+  --color-cv-surface:            #0e1514;
+  --color-cv-surface-dim:        #0e1514;
+  --color-cv-surface-bright:     #343a39;
 
-  /* --- Primary (light cyan-teal) --- */
-  --color-cv-primary:            #d4fff8;
-  --color-cv-primary-fixed:      #78f7ea;
-  --color-cv-primary-dim:        #59dacd;
+  --color-cv-surface-lowest:     #090f0e;
+  --color-cv-surface-low:        #171d1c;
+  --color-cv-surface-container:  #1b2120;
+  --color-cv-surface-high:       #252b2a;
+  --color-cv-surface-highest:    #303635;
+
+  /* --- Primary Accents (Cyan-Teal Precision) --- */
+  --color-cv-primary:            #6feee1;
+  --color-cv-primary-container:  #4fd1c5;
   --color-cv-on-primary:         #003733;
+  --color-cv-on-primary-container:#005750;
+  --color-cv-primary-fixed:      #79f7ea;
+  --color-cv-primary-fixed-dim:  #5adace;
 
-  /* --- Secondary (sky blue) --- */
+  /* --- Secondary Accents (Sky Blue Technical) --- */
   --color-cv-secondary:          #8ecdff;
-  --color-cv-secondary-dim:      #96d0ff;
-  --color-cv-secondary-container:#005a86;
+  --color-cv-secondary-container:#0071a7;
+  --color-cv-on-secondary:       #00344f;
+  --color-cv-on-secondary-container:#deeeff;
 
-  /* --- On-surface --- */
-  --color-cv-on-surface:         #dde4e2;
-  --color-cv-on-surface-var:     #bbc9c6;
-  --color-cv-outline:            #3c4947;
-  --color-cv-outline-soft:       rgba(255,255,255,0.06);
+  /* --- Tertiary Accents (Amber Warning & Warm Metallic) --- */
+  --color-cv-tertiary:           #ffd1af;
+  --color-cv-tertiary-container: #ffab67;
+  --color-cv-on-tertiary:        #4e2600;
+  --color-cv-on-tertiary-container:#773d00;
 
-  /* --- Status --- */
+  /* --- On-Surface & Outlines --- */
+  --color-cv-on-surface:         #dee4e2;
+  --color-cv-on-surface-var:     #bbc9c7;
+  --color-cv-outline:            #869491;
+  --color-cv-outline-var:        #3c4947;
+
+  /* --- Semantic Status --- */
   --color-cv-error:              #ffb4ab;
-  --color-cv-error-bg:           rgba(255,180,171,0.08);
-  --color-cv-error-border:       rgba(255,180,171,0.25);
+  --color-cv-on-error:           #690005;
+  --color-cv-error-container:    #93000a;
 
   --color-cv-warning:            #ffab67;
-  --color-cv-warning-bg:         rgba(255,171,103,0.08);
-  --color-cv-warning-border:     rgba(255,171,103,0.25);
-
   --color-cv-success:            #6feee1;
-  --color-cv-success-bg:         rgba(111,238,225,0.08);
-  --color-cv-success-border:     rgba(111,238,225,0.25);
 
-  /* --- Spacing tokens --- */
+  /* --- Spacing Scale --- */
+  --spacing-unit:                4px;
   --spacing-panel:               12px;
   --spacing-gutter:              16px;
   --spacing-page:                24px;
+  --height-control-bar:          56px;
 }
 
 /* ============================================================
    Base Reset
    ============================================================ */
 :root {
-  /* Keep legacy vars pointing to new palette for backward compat */
-  --background:    #0e1514;
-  --foreground:    #dde4e2;
-  --card-bg:       #1A1D21;
-  --card-border:   #3c4947;
-  --panel-bg:      #1a2120;
-  --accent-blue:   #59dacd;
-  --status-healthy:#6feee1;
-  --status-warning:#ffab67;
-  --status-critical:#ffb4ab;
+  --background:             #0e1514;
+  --foreground:             #dee4e2;
+  --card-bg:                #1b2120;
+  --card-border:            #3c4947;
+  --panel-bg:               #1b2120;
+  --accent-teal:            #6feee1;
+  --accent-cyan:            #4fd1c5;
+  --accent-blue:            #8ecdff;
+  --accent-amber:           #ffab67;
+  --status-healthy:         #6feee1;
+  --status-warning:         #ffab67;
+  --status-critical:        #ffb4ab;
 }
 
 html {
@@ -74,44 +85,44 @@ html {
 
 body {
   background-color: #0e1514;
-  color: #dde4e2;
-  font-family: 'Space Grotesk', 'Anybody', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #dee4e2;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
   position: relative;
 }
 
 /* ============================================================
-   Atmospheric Background Layers
+   Atmospheric Technical Canvas Layers
    ============================================================ */
 
-/* Dot-grid overlay */
+/* Faint dot-grid blueprint texture */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
   pointer-events: none;
 }
 
-/* Ambient teal glow (top center) */
+/* Subtle ambient cyan top glow */
 body::after {
   content: '';
   position: fixed;
-  top: -100px;
+  top: -120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 700px;
-  height: 400px;
+  width: 800px;
+  height: 450px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(89, 218, 205, 0.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(111, 238, 225, 0.06) 0%, transparent 70%);
   z-index: 0;
   pointer-events: none;
 }
 
 /* ============================================================
-   Typography Scale
+   Typography Dual Strategy (Inter + JetBrains Mono)
    ============================================================ */
 code, kbd, samp, pre, .font-mono {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -120,40 +131,49 @@ code, kbd, samp, pre, .font-mono {
 .font-mono-nums {
   font-family: 'JetBrains Mono', monospace;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+}
+
+.label-xs {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* ============================================================
-   CoreView Card System
+   Soft-Technical Card & Panel System
    ============================================================ */
 
-/* Standard panel card */
+/* Standard industrial container */
 .cv-card {
-  background-color: #1A1D21;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255,255,255,0.03);
+  background-color: #1b2120;
+  border: 1px solid rgba(60, 73, 71, 0.8);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-/* Legacy alias — maps old .scada-card to new cv-card style */
 .scada-card {
-  background-color: #1A1D21;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  background-color: #1b2120;
+  border: 1px solid rgba(60, 73, 71, 0.8);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .scada-card-subtle {
-  background-color: #161d1c;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 1rem;
+  background-color: #171d1c;
+  border: 1px solid rgba(60, 73, 71, 0.6);
+  border-radius: 0.375rem;
 }
 
 /* Machine status card variants */
 .cv-card-error {
-  background-color: #1A1D21;
-  border: 1px solid rgba(255, 180, 171, 0.28);
-  border-radius: 1rem;
+  background-color: #1b2120;
+  border: 1px solid rgba(255, 180, 171, 0.4);
+  border-radius: 0.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -167,54 +187,69 @@ code, kbd, samp, pre, .font-mono {
 }
 
 .cv-card-warning {
-  background-color: #1A1D21;
-  border: 1px solid rgba(255, 171, 103, 0.28);
-  border-radius: 1rem;
+  background-color: #1b2120;
+  border: 1px solid rgba(255, 171, 103, 0.4);
+  border-radius: 0.5rem;
 }
 
 .cv-card-success {
-  background-color: #1A1D21;
-  border: 1px solid rgba(111, 238, 225, 0.15);
-  border-radius: 1rem;
+  background-color: #1b2120;
+  border: 1px solid rgba(111, 238, 225, 0.3);
+  border-radius: 0.5rem;
 }
 
 /* ============================================================
-   Interactive Elements
+   Buttons & Interactive Elements
    ============================================================ */
 .btn-interactive {
   transition: all 0.15s ease-in-out;
   cursor: pointer;
+  border-radius: 0.25rem;
 }
 
 .btn-interactive:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.12);
   transform: translateY(-1px);
 }
 
 .btn-interactive:active {
-  transform: translateY(0px) scale(0.97);
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Primary Stitch Teal Button */
+.btn-primary-stitch {
+  background-color: #4fd1c5;
+  color: #003733;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.15s ease;
+}
+
+.btn-primary-stitch:hover {
+  background-color: #6feee1;
+  box-shadow: 0 0 12px rgba(111, 238, 225, 0.3);
 }
 
 /* ============================================================
-   Status LED Indicators
+   Status LED & Telemetry Pips
    ============================================================ */
-.led-healthy  { background-color: #6feee1; }
-.led-warning  { background-color: #ffab67; }
-.led-critical { background-color: #ffb4ab; }
-.led-neutral  { background-color: #8ecdff; }
+.led-healthy  { background-color: #6feee1; box-shadow: 0 0 6px rgba(111,238,225,0.6); }
+.led-warning  { background-color: #ffab67; box-shadow: 0 0 6px rgba(255,171,103,0.6); }
+.led-critical { background-color: #ffb4ab; box-shadow: 0 0 6px rgba(255,180,171,0.6); }
+.led-neutral  { background-color: #8ecdff; box-shadow: 0 0 6px rgba(142,205,255,0.6); }
 
-/* ============================================================
-   Health Progress Bar Colors
-   ============================================================ */
+/* Health Progress Bar Colors */
 .health-bar-critical { background-color: #ffb4ab; }
 .health-bar-warning  { background-color: #ffab67; }
 .health-bar-healthy  { background-color: #6feee1; }
 
 /* ============================================================
-   Background Grid (for page content areas)
+   Background Grid & Canvas Patterns
    ============================================================ */
 .bg-scada-grid {
-  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -222,8 +257,8 @@ code, kbd, samp, pre, .font-mono {
    Scrollbars
    ============================================================ */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -236,52 +271,52 @@ code, kbd, samp, pre, .font-mono {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #59dacd;
+  background: #6feee1;
 }
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ============================================================
-   Nav & Header
+   Header & Nav Bar
    ============================================================ */
 .cv-nav {
-  background: rgba(14, 21, 20, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(60, 73, 71, 0.6);
+  background: rgba(14, 21, 20, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(60, 73, 71, 0.8);
 }
 
 .cv-nav-link {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #bbc9c6;
-  padding: 6px 10px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  color: #bbc9c7;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
   text-decoration: none;
 }
 
 .cv-nav-link:hover {
-  color: #dde4e2;
-  background: rgba(47, 54, 53, 0.5);
+  color: #dee4e2;
+  background: rgba(48, 54, 53, 0.6);
 }
 
 .cv-nav-link.active {
-  color: #d4fff8;
-  border-bottom: 2px solid #59dacd;
+  color: #6feee1;
+  border-bottom: 2px solid #6feee1;
   border-radius: 0;
   padding-bottom: 4px;
 }
 
 /* ============================================================
-   KPI / Metric Cards
+   KPI & Metric Display Cards
    ============================================================ */
 .cv-kpi {
-  background-color: #1A1D21;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 1rem;
+  background-color: #1b2120;
+  border: 1px solid rgba(60, 73, 71, 0.8);
+  border-radius: 0.5rem;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -290,93 +325,53 @@ code, kbd, samp, pre, .font-mono {
 }
 
 .cv-kpi-label {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   font-weight: 700;
   text-transform: uppercase;
-  color: #bbc9c6;
+  color: #bbc9c7;
 }
 
 .cv-kpi-value {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 32px;
+  font-size: 30px;
   line-height: 1;
   letter-spacing: -0.01em;
-  font-weight: 500;
-  color: #dde4e2;
+  font-weight: 600;
+  color: #dee4e2;
 }
 
-.cv-kpi-value.primary { color: #d4fff8; }
+.cv-kpi-value.primary { color: #6feee1; }
 .cv-kpi-value.error   { color: #ffb4ab; }
 .cv-kpi-value.warning { color: #ffab67; }
 .cv-kpi-value.success { color: #6feee1; }
 
 /* ============================================================
-   Machine Fleet Cards
-   ============================================================ */
-.cv-machine-card {
-  background-color: #1A1D21;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 1rem;
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.cv-machine-card:hover {
-  background-color: rgba(47, 54, 53, 0.3);
-}
-
-.cv-machine-card.error   { border-color: rgba(255, 180, 171, 0.3); }
-.cv-machine-card.warning { border-color: rgba(255, 171, 103, 0.3); }
-.cv-machine-card.success { border-color: rgba(111, 238, 225, 0.15); }
-.cv-machine-card.selected { border-color: #59dacd; box-shadow: 0 0 0 1px rgba(89, 218, 205, 0.2); }
-
-/* ============================================================
-   Status Chips / Badges
+   Status Badges & Chips
    ============================================================ */
 .cv-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 3px 8px;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid;
 }
 
-.cv-chip.error   { color: #ffb4ab; background: rgba(255,180,171,0.08); border-color: rgba(255,180,171,0.28); }
-.cv-chip.warning { color: #ffab67; background: rgba(255,171,103,0.08); border-color: rgba(255,171,103,0.28); }
-.cv-chip.success { color: #6feee1; background: rgba(111,238,225,0.08); border-color: rgba(111,238,225,0.2); }
-.cv-chip.neutral { color: #8ecdff; background: rgba(142,205,255,0.08); border-color: rgba(142,205,255,0.2); }
-.cv-chip.dim     { color: #bbc9c6; background: rgba(187,201,198,0.08); border-color: rgba(187,201,198,0.15); }
+.cv-chip.error   { color: #ffb4ab; background: rgba(255,180,171,0.08); border-color: rgba(255,180,171,0.3); }
+.cv-chip.warning { color: #ffab67; background: rgba(255,171,103,0.08); border-color: rgba(255,171,103,0.3); }
+.cv-chip.success { color: #6feee1; background: rgba(111,238,225,0.08); border-color: rgba(111,238,225,0.25); }
+.cv-chip.neutral { color: #8ecdff; background: rgba(142,205,255,0.08); border-color: rgba(142,205,255,0.25); }
+.cv-chip.dim     { color: #bbc9c7; background: rgba(187,201,199,0.08); border-color: rgba(187,201,199,0.2); }
 
 /* ============================================================
-   AI Feed Log Items
-   ============================================================ */
-.cv-log-item {
-  display: flex;
-  gap: 12px;
-  font-size: 13px;
-  padding: 8px 0;
-}
-
-.cv-log-bar {
-  width: 3px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   Pulse animation for critical indicators
+   Pulse Animation for Real-Time Telemetry
    ============================================================ */
 @keyframes cv-pulse {
   0%, 100% { opacity: 1; }
