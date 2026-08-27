@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Header from "./Header";
+import Sidebar from "./Sidebar";
 import { useTelemetry } from "@/context/TelemetryContext";
 import { useRole } from "@/context/RoleContext";
 
@@ -11,6 +12,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { overview, alerts, isConnected } = useTelemetry();
   const { isAuthenticated } = useRole();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const isLoginPage = pathname === "/login";
 
@@ -36,17 +38,24 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0d1117]">
-      {/* AURA-style unified top navigation bar — no sidebar */}
+      {/* Top Header Navigation Bar */}
       <Header
         overview={overview}
         isConnected={isConnected}
         alerts={alerts}
       />
 
-      {/* Main page content — full width, dot-grid background */}
-      <main className="flex-1 overflow-y-auto bg-scada-grid p-4 lg:p-6 pb-16" style={{ background: '#0e1514' }}>
-        {children}
-      </main>
+      {/* Main Body: Left Thin Control Panel + Center Content */}
+      <div className="flex flex-1 overflow-hidden">
+        <Sidebar
+          alerts={alerts}
+          isCollapsed={isCollapsed}
+          onToggle={() => setIsCollapsed(!isCollapsed)}
+        />
+        <main className="flex-1 overflow-y-auto bg-scada-grid p-4 lg:p-6 pb-16" style={{ background: '#0e1514' }}>
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
